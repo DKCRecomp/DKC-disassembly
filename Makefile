@@ -1,11 +1,12 @@
 AS=wla-65816
 AS_SPC700=wla-spc700
+AS_GITHUB=https://github.com/vhelin/wla-dx
 LD=wlalink
 BMP2CHR=bmp2chr
 PACKER=packer
 BRR=brr
-ROM=game
-COBJ=game.o
+ROM=dkc
+COBJ=dkc.o
 
 all: check-wla graphics sound spc700 encodings $(ROM).smc
 	echo "Done"
@@ -18,7 +19,7 @@ check-wla:
 		echo "ERROR: $(AS) not found!"; \
 		echo ""; \
 		echo "Please install WLA-DX Assembler:"; \
-		echo "  https://github.com/vhelin/wla-dx"; \
+		echo "  $(AS_GITHUB)"; \
 		echo ""; \
 		exit 1; \
 	}
@@ -27,7 +28,7 @@ check-wla:
 		echo "ERROR: $(AS_SPC700) not found!"; \
 		echo ""; \
 		echo "Please install WLA-DX Assembler:"; \
-		echo "  https://github.com/vhelin/wla-dx"; \
+		echo "  $(AS_GITHUB)"; \
 		echo ""; \
 		exit 1; \
 	}
@@ -36,7 +37,7 @@ check-wla:
 		echo "ERROR: $(LD) not found!"; \
 		echo ""; \
 		echo "Please install WLA-DX Assembler:"; \
-		echo "  https://github.com/vhelin/wla-dx"; \
+		echo "  $(AS_GITHUB)"; \
 		echo ""; \
 		exit 1; \
 	}
