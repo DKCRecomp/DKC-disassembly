@@ -1,0 +1,11 @@
+# IDE
+.vscode/
+.vs/
+.idea/
+.cache
+
+# outputs
+build/
+*.o
+*.sym
+*.smc
