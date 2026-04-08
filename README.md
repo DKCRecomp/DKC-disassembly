@@ -50,7 +50,7 @@ dkc-recomp/
 ├── sprites1_gfx.png      # PNG preview (if palette provided)
 ├── sprites1_pal.pal      # Extracted palettes
 |
-└── game.smc              # Reassembled ROM (after make)
+└── dkc.smc              # Reassembled ROM (after make)
 ```
 
 ## Compilation
@@ -70,7 +70,7 @@ You can test compilation and reassemble ROM.
 cd dkc-decomp
 # Edit Makefile PREFIX to point to your wla-dx install path
 make
-# Done! Run the game.smc file in your emulator.
+# Done! Run the dkc.smc file in your emulator.
 ```
 
 ## References
