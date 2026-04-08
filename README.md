@@ -20,11 +20,13 @@ The purpose of the project is to recreate a source code base for the game from s
 
 ## Overview
 
-The only version currently supported is `SNES US v1.0`. It was initially made by using [`snes2asm`](https://github.com/nathancassano/snes2asm) disassembly tool on a SNES US v1.0 ROM copy. 
+The only version currently supported is `SNES US v1.0`. 
+It was initially made by using [`snes2asm`](https://github.com/nathancassano/snes2asm) disassembly tool on a SNES US v1.0 ROM copy. 
 
-This decompilation mostly contains game and audio code. As assets are proprietary and copyrighted by Nintendo Ltd, you will not find any of these in this project. Sharing it here would take us down.
-
-You can use `snes2asm` for data assets such as `graphics`, `tilemaps`, `palettes`, `audio`, and `text` and be extracted by specifying a YAML configuration file. (See [Configuration](https://github.com/nathancassano/snes2asm?tab=readme-ov-file#configuration) section).
+>[NOTE]
+>This decompilation mostly contains game and audio code. Assets are proprietary and copyrighted by Nintendo Ltd, you will not find any of these here.
+>You can still use `snes2asm` for data assets such as `graphics`, `tilemaps`, `palettes`, `audio`, and `text` and be extracted by specifying a YAML configuration file. 
+> (See [Configuration](https://github.com/nathancassano/snes2asm?tab=readme-ov-file#configuration) section).
 
 ## Features
 * ROM disassembly.
@@ -64,7 +66,7 @@ For compiling the project, you will need:
 
 ### Usage
 
-You can test compilation and reassemble ROM.
+You can test compilation and reassemble ROM :
 
 ```bash
 cd dkc-decomp
