@@ -1,3 +1,6 @@
+
+![image-header](https://mario.wiki.gallery/images/b/b0/DK_%26_Diddy.png)
+
 Donkey Kong Country (US) 1.0
 ========
 
