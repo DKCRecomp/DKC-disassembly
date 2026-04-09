@@ -36,7 +36,7 @@ It was initially made by using [`snes2asm`](https://github.com/nathancassano/sne
 The disassemble uses the following project structure:
 
 ```
-dkc-recomp/
+DKC-disassembly/
 |
 ├── Makefile              # Build configuration
 ├── hdr.asm               # Game header
@@ -68,7 +68,7 @@ For compiling the project, you will need:
 You can test compilation and reassemble ROM :
 
 ```bash
-cd dkc-decomp
+cd DKC-disassembly
 # Edit Makefile PREFIX to point to your wla-dx install path
 make
 # Done! Run the dkc.smc file in your emulator.
