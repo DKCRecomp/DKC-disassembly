@@ -13,9 +13,8 @@ The purpose of the project is to recreate a source code base for the game from s
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
-- [Requirements](#requirements)
+- [Structure](#structure)
 - [Usage](#usage)
-- [Output Structure](#output-structure)
 - [References](#references)
 
 ## Overview
@@ -55,7 +54,7 @@ dkc-recomp/
 └── dkc.smc              # Reassembled ROM (after make)
 ```
 
-## Compilation
+## Usage
 
 ### Requirements
 
@@ -64,7 +63,7 @@ For compiling the project, you will need:
 * **[WLA-DX Assembler](https://github.com/vhelin/wla-dx)**
 * **GNU Make**
 
-### Usage
+### Compilation
 
 You can test compilation and reassemble ROM :
 
