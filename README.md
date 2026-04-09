@@ -38,20 +38,25 @@ The disassemble uses the following project structure:
 ```
 DKC-disassembly/
 |
-├── Makefile              # Build configuration
-├── hdr.asm               # Game header
-├── snes.asm              # SNES register definitions
+├── src/                  # Code entrypoint
+|   ├── snes/             # SNES register definitions
+|   ├── header/           # Game header
+|   ├── constants/        # Build configuration
+|   ├── banks/            # Banks assembly code
+|   ├── spc700/           # SPC700 audio assembly code
+|   |
+|   └── main.s            # Includes and structures code files
 |
-├── bank_00.asm           # Bank 0 assembly code
-├── bank_01.asm           # Bank 1 assembly code
-├── ...                   # Additional banks
-├── spc700.asm            # SPC700 audio assembly code
+├── build/                # Build result (after make)
+|   └── dkc.smc           # Reassembled ROM (after make)
 |
 ├── sprites1_gfx.chr      # Extracted graphics (if configured)
 ├── sprites1_gfx.png      # PNG preview (if palette provided)
-├── sprites1_pal.pal      # Extracted palettes
+├── sprites1_pal.pal      # Extracted palettes (if configured)      
 |
-└── dkc.smc              # Reassembled ROM (after make)
+├── Makefile              # Build configuration  
+├── linkfile              # Linking code 
+└── linkfile_spc          # Linking audio code
 ```
 
 ## Usage
