@@ -1,10 +1,19 @@
-AS=wla-65816
-AS_SPC700=wla-spc700
-AS_GITHUB=https://github.com/vhelin/wla-dx
-LD=wlalink
+# ----- Assembler -----
+
+ASSEMBLER_NAME=WLA-DX
+ASSEMBLER=wla-65816
+ASSEMBLER_AUDIO=wla-spc700
+ASSEMBLER_REPO=https://github.com/vhelin/wla-dx
+LINKER=wlalink
+
+# ----- Tools -----
+
 BMP2CHR=bmp2chr
 PACKER=packer
 BRR=brr
+
+# ----- Game -----
+
 ROM=dkc
 COBJ=dkc.o
 
@@ -14,30 +23,30 @@ all: check-wla graphics sound spc700 encodings $(ROM).smc
 # Check if WLA-DX binaries are available
 .PHONY: check-wla
 check-wla:
-	@command -v $(AS) >/dev/null 2>&1 || { \
+	@command -v $(ASSEMBLER) >/dev/null 2>&1 || { \
 		echo ""; \
-		echo "ERROR: $(AS) not found!"; \
+		echo "ERROR: $(ASSEMBLER) not found!"; \
 		echo ""; \
-		echo "Please install WLA-DX Assembler:"; \
-		echo "  $(AS_GITHUB)"; \
-		echo ""; \
-		exit 1; \
-	}
-	@command -v $(AS_SPC700) >/dev/null 2>&1 || { \
-		echo ""; \
-		echo "ERROR: $(AS_SPC700) not found!"; \
-		echo ""; \
-		echo "Please install WLA-DX Assembler:"; \
-		echo "  $(AS_GITHUB)"; \
+		echo "Please install $(ASSEMBLER_NAME) ASSEMBLER:"; \
+		echo "  $(ASSEMBLER_REPO)"; \
 		echo ""; \
 		exit 1; \
 	}
-	@command -v $(LD) >/dev/null 2>&1 || { \
+	@command -v $(ASSEMBLER_AUDIO) >/dev/null 2>&1 || { \
 		echo ""; \
-		echo "ERROR: $(LD) not found!"; \
+		echo "ERROR: $(ASSEMBLER_AUDIO) not found!"; \
 		echo ""; \
-		echo "Please install WLA-DX Assembler:"; \
-		echo "  $(AS_GITHUB)"; \
+		echo "Please install $(ASSEMBLER_NAME) ASSEMBLER:"; \
+		echo "  $(ASSEMBLER_REPO)"; \
+		echo ""; \
+		exit 1; \
+	}
+	@command -v $(LINKER) >/dev/null 2>&1 || { \
+		echo ""; \
+		echo "ERROR: $(LINKER) not found!"; \
+		echo ""; \
+		echo "Please install $(ASSEMBLER_NAME) ASSEMBLER:"; \
+		echo "  $(ASSEMBLER_REPO)"; \
 		echo ""; \
 		exit 1; \
 	}
@@ -68,11 +77,11 @@ spc700: $(patsubst %.S,%.spc,$(wildcard *.S))
 
 # Compile SPC700 assembly to object file
 %.obj: %.S
-	$(AS_SPC700) -i -o $@ $<
+	$(ASSEMBLER_AUDIO) -i -o $@ $<
 
 # Link SPC700 object file to binary
 %.spc: %.obj
-	$(LD) -i -S linkfile_spc $@
+	$(LINKER) -i -S linkfile_spc $@
 
 .PHONY: encodings
 encodings: 
@@ -83,10 +92,10 @@ main.s: $(wildcard *.asm)
 	touch main.s
 
 $(COBJ): $(wildcard *.s)
-	$(AS) -x -v -o $@ $<
+	$(ASSEMBLER) -x -v -o $@ $<
 
 $(ROM).smc: $(COBJ)
-	$(LD) -d -v -S linkfile $(ROM).smc
+	$(LINKER) -d -v -S linkfile $(ROM).smc
 
 clean:
 	rm -f $(ROM).smc $(COBJ) *.obj *.o *.linkfile
