@@ -22,13 +22,11 @@ mnemonics = [
 pattern = re.compile(r'\b(' + '|'.join(mnemonics) + r')\b')
 
 def main():
-    upper_instructions()
-
-def upper_instructions():
     print(f'\nSupported mnemonics: \n{mnemonics}\n')
     print("Start upping instructions...\n")
 
     files = sorted(BANKS_PATH.glob('*.asm'))
+    
     for file in files:
         content = file.read_text(errors='replace')
         remplace_content(file, content)
@@ -36,12 +34,12 @@ def upper_instructions():
     print(f"\nDone.\n")
 
 def remplace_content(file, content):
-    new_content, count = get_upper_instructions(content)
+    new_content, count = get_upper_instrs(content)
     if count > 0:
         file.write_text(new_content)
     print(f"  {file.name:20s} - {count} replacements found")
 
-def get_upper_instructions(content):
+def get_upper_instrs(content):
     return pattern.subn(get_upper_instr, content)
 
 def get_upper_instr(instr):
