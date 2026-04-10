@@ -69,6 +69,7 @@ This decompilation was done by decompiling a game ROM using `snes2asm`.
 Here are specific informations about that ROM, from `Mesen` emulator:
 
 - Game: `DONKEY KONG COUNTRY`
+- Frequency mode: `NTSC-C` 
 - Game code: `8X`
 - Type: `HiROM`
 - `FastROM`
@@ -93,15 +94,15 @@ L000000:    ; Label with $00 (HiROM actual adress)
 
 Here is the memory map used for HiROM :
 
-snes2asm|  Real adress  |  Content
-:------:|:-------------:|:---------:
- bank00 | $C0:0000–FFFF | Code/Data
- bank01 | $C1:0000–FFFF |    //
-  ...   |      ...      |    //
- bank3F | $FF:0000–FFFF |    //
- bank40 | $40:0000–FFFF |   Data
-  ...   |      ...      |    //
- bank63 | $63:0000–FFFF |    //
+snes2asm|    Adresses    |  Content
+:------:|:--------------:|:---------:
+ bank00 | $C0: 0000–FFFF | Code/Data
+ bank01 | $C1: 0000–FFFF |    //
+  ...   |      ...       |    //
+ bank3F | $FF: 0000–FFFF |    //
+ bank40 | $40: 0000–FFFF |   Data
+  ...   |      ...       |    //
+ bank63 | $63: 0000–FFFF |    //
 
 ## Usage
 
