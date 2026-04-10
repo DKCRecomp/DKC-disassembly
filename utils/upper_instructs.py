@@ -17,7 +17,6 @@ mnemonics = [
     'sty','stz','tax','tay','tcd','tcs','tdc','trb','tsb','tsc','tsx','txa',
     'txs','txy','tya','tyx','wai','wdm','xba','xce'
 ]
-print(f'All supported mnemonics: \n{mnemonics}')
 
 # Regex : mnem in lowercase
 pattern = re.compile(r'\b(' + '|'.join(mnemonics) + r')\b')
@@ -29,9 +28,10 @@ def main():
     upper_instructions()
 
 def upper_instructions():
-    total_files = 0
-    total_replacements = 0
+    print(f'\nSupported mnemonics: \n{mnemonics}\n')
+    print("Start upping instructions...\n")
 
+    nb_files=0
     for f in sorted(BANKS_DIR.glob('*.asm')):
 
         content = f.read_text(errors='replace')
@@ -40,11 +40,9 @@ def upper_instructions():
         if count > 0:
             f.write_text(new_content)
             print(f"  {f.name:20s}  {count} replacements")
-            total_files += 1
-            total_replacements += count
-
-    print(f"\n  {total_files} files modified, {total_replacements} total replacements")
-    print("Done.")
+            nb_files += 1
+   
+    print(f"\nDone, {nb_files} files modified.\n")
 
 def upper_instruction(instr):
     return instr.group(0).upper()
