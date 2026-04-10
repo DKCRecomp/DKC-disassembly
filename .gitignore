@@ -9,3 +9,6 @@ build/
 *.o
 *.sym
 *.smc
+
+# backups
+*.bak
