@@ -6,7 +6,7 @@
 .fail "Invalid version of wla-dx. Please ensure you are using version 10.0 or higher"
 .endif
 
-.include "./src/header/hdr.asm"
+.include "./src/header/header.asm"
 .include "./src/snes/snes.asm"
 .include "./src/constants/constants.asm"
 .include "./src/banks/bank00.asm"
