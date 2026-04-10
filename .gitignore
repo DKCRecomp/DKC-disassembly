@@ -10,5 +10,8 @@ build/
 *.sym
 *.smc
 
+# python
+__pycache__/
+
 # backups
 *.bak
