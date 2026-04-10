@@ -1,0 +1,53 @@
+import re
+from pathlib import Path
+import sys
+
+# ----- Globals -----
+
+REPO_ROOT = Path(__file__).parent.parent
+BANKS_DIR = REPO_ROOT / 'src' / 'banks'
+
+mnemonics = [
+    'adc','and','asl','bcc','bcs','beq','bit','bmi','bne','bpl','bra','brk',
+    'brl','bvc','bvs','clc','cld','cli','clv','cmp','cop','cpx','cpy','dec',
+    'dex','dey','eor','inc','inx','iny','jml','jmp','jsl','jsr','lda','ldx',
+    'ldy','lsr','mvn','mvp','nop','ora','pea','pei','per','pha','phb','phd',
+    'phk','php','phx','phy','pla','plb','pld','plp','plx','ply','rep','rol',
+    'ror','rti','rtl','rts','sbc','sec','sed','sei','sep','sta','stp','stx',
+    'sty','stz','tax','tay','tcd','tcs','tdc','trb','tsb','tsc','tsx','txa',
+    'txs','txy','tya','tyx','wai','wdm','xba','xce'
+]
+print(f'All supported mnemonics: \n{mnemonics}')
+
+# Regex : mnem in lowercase
+pattern = re.compile(r'\b(' + '|'.join(mnemonics) + r')\b')
+
+def main():
+    if not REPO_ROOT.exists():
+        print(f"Directory not found: {REPO_ROOT}")
+        sys.exit(1)
+    upper_instructions()
+
+def upper_instructions():
+    total_files = 0
+    total_replacements = 0
+
+    for f in sorted(BANKS_DIR.glob('*.asm')):
+
+        content = f.read_text(errors='replace')
+        new_content, count = pattern.subn(upper_instruction, content)
+
+        if count > 0:
+            f.write_text(new_content)
+            print(f"  {f.name:20s}  {count} replacements")
+            total_files += 1
+            total_replacements += count
+
+    print(f"\n  {total_files} files modified, {total_replacements} total replacements")
+    print("Done.")
+
+def upper_instruction(instr):
+    return instr.group(0).upper()
+
+if __name__ == '__main__':
+    main()
