@@ -6733,7 +6733,7 @@
 	brk $FB.b		; 00 FB
 	brk $7F.b		; 00 7F
 	brk $55.b		; 00 55
-	jsl L800000.l		; 22 00 00 80
+	jsl CODE_800000.l		; 22 00 00 80
 	bra -124.b		; 80 84
 	bpl -68.b		; 10 BC
 	and ($8E.b),Y		; 31 8E
@@ -17401,18 +17401,18 @@
 .BASE $A0
 LB99023:
 .BASE $00
-L399023:
-	jsr L399027.w
+CODE_399023:
+	jsr CODE_399027.w
 	rtl
 
-L399027:
+CODE_399027:
 	cmp $0521.w
-	beq L399035.b
+	beq CODE_399035.b
 	sta $0521.w
 	pha
 	pla
-	jsl L8AB414.l
-L399035:
+	jsl CODE_8AB414.l
+CODE_399035:
 	rts
 
 	pha		; 48
@@ -17420,7 +17420,7 @@ L399035:
 	jsl LB990E7.l		; 22 E7 90 B9
 	pla		; 68
 	pha		; 48
-	jsr L399027.w		; 20 27 90
+	jsr CODE_399027.w		; 20 27 90
 	pla		; 68
 	jsl $B990CE.l		; 22 CE 90 B9
 	rtl		; 6B
@@ -17432,7 +17432,7 @@ L399035:
 	jsl LB990E7.l		; 22 E7 90 B9
 	pla		; 68
 	pha		; 48
-	jsr L399027.w		; 20 27 90
+	jsr CODE_399027.w		; 20 27 90
 	pla		; 68
 	jsl $B990CE.l		; 22 CE 90 B9
 	rtl		; 6B
@@ -17486,13 +17486,13 @@ L399035:
 	brk $A6.b		; 00 A6
 	brk $8D.b		; 00 8D
 	and $05.b,S		; 23 05
-	jsl L8AB1CB.l		; 22 CB B1 8A
+	jsl CODE_8AB1CB.l		; 22 CB B1 8A
 	lda #$0001.w		; A9 01 00
 	sta $051D.w		; 8D 1D 05
 .ACCU 8
 	sep #$20		; E2 20
 	ldx #$00FE.w		; A2 FE 00
-	jsl L8AB1AF.l		; 22 AF B1 8A
+	jsl CODE_8AB1AF.l		; 22 AF B1 8A
 .ACCU 16
 .INDEX 16
 	rep #$30		; C2 30
@@ -17501,20 +17501,20 @@ L399035:
 .BASE $A0
 LB990E7:
 .BASE $00
-L3990E7:
+CODE_3990E7:
 	stz $0523.w
 	lda $051D.w
-	beq L3990FF.b
+	beq CODE_3990FF.b
 	stz $051D.w
 	nop
 	nop
 .ACCU 8
 	sep #$20
 	ldx #$00FF.w
-	jsl L8AB1AF.l
+	jsl CODE_8AB1AF.l
 .ACCU 16
 	rep #$20
-L3990FF:
+CODE_3990FF:
 	rtl
 
 	stz $0889.w		; 9C 89 08
@@ -17584,7 +17584,7 @@ L3990FF:
 	beq  17.b		; F0 11
 	jsl LB990E7.l		; 22 E7 90 B9
 	lda $1E3D.w		; AD 3D 1E
-	jsr L399027.w		; 20 27 90
+	jsr CODE_399027.w		; 20 27 90
 	lda $1E3D.w		; AD 3D 1E
 	jsl $B990CE.l		; 22 CE 90 B9
 	rts		; 60
@@ -18492,11 +18492,11 @@ L3990FF:
 .BASE $A0
 LB999AD:
 .BASE $00
-L3999AD:
-	jsr L3999B1.w
+CODE_3999AD:
+	jsr CODE_3999B1.w
 	rtl
 
-L3999B1:
+CODE_3999B1:
 	sta DMASRC0L.w		; DMA 0 Source Adress Low Byte
 	sty DMALEN0L.w		; DMA 0 Transfer Size Low Byte
 	lda #$1801.w

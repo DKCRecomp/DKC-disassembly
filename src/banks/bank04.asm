@@ -26684,7 +26684,7 @@
 	phd		; 0B
 	jmp $FC4C.w		; 4C 4C FC
 	beq -52.b		; F0 CC
-	jmp L8000C0.l		; 5C C0 00 80
+	jmp CODE_8000C0.l		; 5C C0 00 80
 	brk $00.b		; 00 00
 	brk $03.b		; 00 03
 	ora $14.b,S		; 03 14

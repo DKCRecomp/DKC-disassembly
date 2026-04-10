@@ -29131,7 +29131,7 @@
 	phx		; DA
 	ora $F5.b		; 05 F5
 	tax		; AA
-	jsl L8AB1AF.l		; 22 AF B1 8A
+	jsl CODE_8AB1AF.l		; 22 AF B1 8A
 	plx		; FA
 	plp		; 28
 	rts		; 60

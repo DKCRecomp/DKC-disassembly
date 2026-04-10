@@ -4,29 +4,29 @@
 .SECTION "Bank00" FORCE
 
 .BASE $80
-L800000:
+CODE_800000:
 .BASE $00
-L000000:
+CODE_000000:
 	ora $08.b,S
 	asl $00.b
 	brk $0E.b
-	bpl   6.b		; Invalid branch target (bpl L00000E)
-L000008:
+	bpl   6.b		; Invalid branch target (bpl CODE_00000E)
+CODE_000008:
 	sei		; Disable interrupts
 	eor $78.b,X
 	adc $68.b
 	.db $5E		; Opcode overrunning section
-L00000E:
+CODE_00000E:
 	adc ($56.b)		; 72 56
 	dey
-	.db $62, $8B, $5A		; Invalid branch target (per L005A9F)
+	.db $62, $8B, $5A		; Invalid branch target (per CODE_005A9F)
 	adc $8075.w,X
 	ply
-L000018:
-	bvs L000088.b
+CODE_000018:
+	bvs CODE_000088.b
 	ror $6176.w
 	adc $02.b,S
-L00001F:
+CODE_00001F:
 	ora $19.b,S
 	ora [$16.b]
 	and $222E46.l
@@ -37,7 +37,7 @@ L00001F:
 	ora $073F07.l,X
 	sbc $22DE27.l,X
 	ldx $3AB2.w,Y
-L00003C:
+CODE_00003C:
 	tda
 	tsx
 	rts
@@ -75,10 +75,10 @@ L00003C:
 	sbc $FBE4.w,X		; FD E4 FB
 	dex		; CA
 	.db $FC		; Opcode overrunning section
-L000088:
+CODE_000088:
 	cmp $FD.b,S
 	brk $FE.b
-L00008C:
+CODE_00008C:
 	trb $E8.b
 	cop $FF.b
 	ror $C0FF.w
@@ -95,7 +95,7 @@ L00008C:
 	asl $00.b
 	brk $00.b
 	brk $00.b
-L0000B3:
+CODE_0000B3:
 	brk $00.b
 	brk $00.b
 	brk $03.b
@@ -104,15 +104,15 @@ L0000B3:
 	xce		; Exchange carry bit to set emulation or native mode
 	jsr ($3019.w,X)
 .BASE $80
-L8000C0:
+CODE_8000C0:
 .BASE $00
-L0000C0:
+CODE_0000C0:
 	and $14.b
 	bit $0C.b,X
 	jmp ($FC00.w,X)
-L0000C7:
+CODE_0000C7:
 	brk $FC.b
-	bra L0000C7.b
+	bra CODE_0000C7.b
 	trb $3F.b		; 14 3F
 	eor $080708.l,X		; 5F 08 07 08
 	ora $04.b,S		; 03 04
@@ -491,7 +491,7 @@ L0000C7:
 	ora $1F1F0F.l		; 0F 0F 1F 1F
 	ora $062031.l,X		; 1F 31 20 06
 	brk $2C.b		; 00 2C
-	jsr L000008.w		; 20 08 00
+	jsr CODE_000008.w		; 20 08 00
 	bit $24.b		; 24 24
 	php		; 08
 	php		; 08
@@ -678,7 +678,7 @@ L0000C7:
 	and $8814.w,Y		; 39 14 88
 	cmp ($AB.b),Y		; D1 AB
 	adc $27.b,X		; 75 27
-	jsr L000018.w		; 20 18 00
+	jsr CODE_000018.w		; 20 18 00
 	sed		; F8
 	asl $1DFF.w		; 0E FF 1D
 	sbc $0BDF2F.l,X		; FF 2F DF 0B
@@ -856,7 +856,7 @@ L0000C7:
 	brk $00.b		; 00 00
 	brk $04.b		; 00 04
 	ora $012100.l		; 0F 00 21 01
-	jmp L00008C.w		; 4C 8C 00
+	jmp CODE_00008C.w		; 4C 8C 00
 	brk $40.b		; 00 40
 	brk $00.b		; 00 00
 	brk $00.b		; 00 00
@@ -3540,7 +3540,7 @@ L0000C7:
 	beq -20.b		; F0 EC
 	beq  12.b		; F0 0C
 	beq -36.b		; F0 DC
-	jsr L00003C.w		; 20 3C 00
+	jsr CODE_00003C.w		; 20 3C 00
 	asl $01.b		; 06 01
 	brk $FF.b		; 00 FF
 	brk $FF.b		; 00 FF
@@ -4666,7 +4666,7 @@ L0000C7:
 	tsb $8C8D.w		; 0C 8D 8C
 	sbc $03FC00.l,X		; FF 00 FC 03
 	.db $BC		; Opcode overrunning section
-L002976:
+CODE_002976:
 	ora $98.b,S
 	ora [$C8.b]
 	ora [$0C.b]
@@ -4674,27 +4674,27 @@ L002976:
 	ora $8C.b,S
 	ora $C0.b,S
 	cpy #$7070.w
-	bcs  48.b		; Invalid branch target (bcs L0029B7)
-	bmi L0029B9.b
-	bmi L0029BB.b
-	bpl L00299D.b
+	bcs  48.b		; Invalid branch target (bcs CODE_0029B7)
+	bmi CODE_0029B9.b
+	bmi CODE_0029BB.b
+	bpl CODE_00299D.b
 	iny
 	php
 	inc $06.b,X
 	cpy #$7000.w
-	bra L0029C6.b
+	bra CODE_0029C6.b
 	cpy #$C030.w		; C0 30 C0
 	bmi -64.b		; 30 C0
 	bpl -32.b		; 10 E0
-L00299D:
+CODE_00299D:
 	php
-L00299E:
-	beq L0029A6.b
+CODE_00299E:
+	beq CODE_0029A6.b
 	sed		; Set decimal
 	sed		; Set decimal
 	ora [$FF.b]
 	brk $C1.b
-L0029A6:
+CODE_0029A6:
 	brk $03.b
 	brk $03.b
 	brk $01.b
@@ -4704,26 +4704,26 @@ L0029A6:
 	brk $00.b
 	brk $00.b
 	.db $00		; Opcode overrunning section
-L0029B7:
+CODE_0029B7:
 	brk $00.b		; 00 00
-L0029B9:
+CODE_0029B9:
 	brk $00.b
-L0029BB:
+CODE_0029BB:
 	brk $00.b
 	brk $00.b
 	brk $00.b
 	cpy #$E7C0.w
 	sbc [$EE.b]
-L0029C6:
+CODE_0029C6:
 	inc $FCFC.w
 	cpy #$80C0.w
-	bra L0029CE.b
-L0029CE:
+	bra CODE_0029CE.b
+CODE_0029CE:
 	brk $01.b
 	ora ($C0.b,X)
 	.db $3F		; Opcode overrunning section
 	.db $E7		; Opcode overrunning section
-L0029D4:
+CODE_0029D4:
 	clc		; 18
 	inc $FC10.w		; EE 10 FC
 	brk $C0.b
@@ -4733,8 +4733,8 @@ L0029D4:
 	brk $7F.b
 	adc $018181.l,X
 	ora ($80.b,X)
-	bra L0029EA.b
-L0029EA:
+	bra CODE_0029EA.b
+CODE_0029EA:
 	brk $00.b
 	brk $F6.b
 	inc $CE.b,X
@@ -4746,10 +4746,10 @@ L0029EA:
 	brk $00.b
 	brk $00.b
 	brk $30.b
-L002A01:
+CODE_002A01:
 	ora ($01.b,X)
 	brk $00.b
-	brl L002D8A.w
+	brl CODE_002D8A.w
 	cop $03.b		; 02 03
 	cop $07.b		; 02 07
 	asl $1D.b		; 06 1D
@@ -4766,7 +4766,7 @@ L002A01:
 	sbc ($61.b,X)		; E1 61
 	cpx #$E626.w		; E0 26 E6
 	stz $907E.w,X		; 9E 7E 90
-	bvs L002A01.b		; 70 D1
+	bvs CODE_002A01.b		; 70 D1
 	and ($07.b),Y		; 31 07
 	sbc $1FFF0F.l,X		; FF 0F FF 1F
 	sbc $19FF1F.l,X		; FF 1F FF 19
@@ -5052,9 +5052,9 @@ L002A01:
 	sep #$E3		; E2 E3
 	sbc $E3.b,S		; E3 E3
 	.db $E3		; Opcode overrunning section
-L002D0F:
+CODE_002D0F:
 	sbc $E3.b,S
-L002D11:
+CODE_002D11:
 	sbc $01FE00.l,X
 	sbc $00F300.l,X
 	sep #$00
@@ -5067,7 +5067,7 @@ L002D11:
 	cmp ($C1.b,X)
 	cmp $98C1.w,Y
 	.db $80		; Opcode overrunning section
-L002D31:
+CODE_002D31:
 	sbc $00FF00.l,X		; FF 00 FF 00
 	sbc $18E710.l		; EF 10 E7 18
 	eor $3C.b,S		; 43 3C
@@ -5101,10 +5101,10 @@ L002D31:
 	cpx #$E0E0.w		; E0 E0 E0
 	cpx #$E0E0.w		; E0 E0 E0
 	cpx #$C0E0.w		; E0 E0 C0
-L002D8A:
+CODE_002D8A:
 	cpy #$C0C0.w
-	bra L002D0F.b
-	bra L002D11.b		; 80 80
+	bra CODE_002D0F.b
+	bra CODE_002D11.b		; 80 80
 	cpx #$E000.w		; E0 00 E0
 	brk $E0.b		; 00 E0
 	brk $E0.b		; 00 E0
@@ -6695,7 +6695,7 @@ L002D8A:
 	sbc [$E7.b],Y		; F7 E7
 	cmp [$87.b]		; C7 87
 	ora $001103.l,X		; 1F 03 11 00
-	jsr L000000.w		; 20 00 00
+	jsr CODE_000000.w		; 20 00 00
 	brk $F0.b		; 00 F0
 	beq -16.b		; F0 F0
 	beq -16.b		; F0 F0
@@ -8766,7 +8766,7 @@ L002D8A:
 	brk $FE.b		; 00 FE
 	ror $3E00.w,X		; 7E 00 3E
 	brk $4E.b		; 00 4E
-	jsr L0000B3.w		; 20 B3 00
+	jsr CODE_0000B3.w		; 20 B3 00
 	.db $82, $00, $21		; 82 00 21
 	rti		; 40
 
@@ -11126,7 +11126,7 @@ L002D8A:
 	lda ($04.b),Y		; B1 04
 	sbc $F308.w,Y		; F9 08 F3
 	cmp $3F.b,S		; C3 3F
-	jsr L00001F.w		; 20 1F 00
+	jsr CODE_00001F.w		; 20 1F 00
 	adc $1EFF1F.l,X		; 7F 1F FF 1E
 	sbc $9FCF30.l,X		; FF 30 CF 9F
 	and #$37B1.w		; 29 B1 37
@@ -11486,7 +11486,7 @@ L002D8A:
 	bmi   0.b		; 30 00
 	brk $00.b		; 00 00
 	brk $00.b		; 00 00
-	jsr L000000.w		; 20 00 00
+	jsr CODE_000000.w		; 20 00 00
 	brk $B1.b		; 00 B1
 	dec $F4.b		; C6 F4
 	cmp $7F4F.w,X		; DD 4F 7F
@@ -12911,7 +12911,7 @@ L002D8A:
 	jsr $00FF.w		; 20 FF 00
 	sbc $00FF00.l,X		; FF 00 FF 00
 	.db $FF		; Opcode overrunning section
-L007800:
+CODE_007800:
 	brk $F8.b
 	sbc $F23FC0.l,X
 	ora $007D.w
@@ -12930,7 +12930,7 @@ L007800:
 	brk $FF.b		; 00 FF
 	adc $FE19FF.l,X		; 7F FF 19 FE
 	sbc $00DF00.l,X		; FF 00 DF 00
-	jsr L000000.w		; 20 00 00
+	jsr CODE_000000.w		; 20 00 00
 	brk $00.b		; 00 00
 	brk $00.b		; 00 00
 	brk $00.b		; 00 00
@@ -13874,7 +13874,7 @@ L007800:
 	brk $00.b		; 00 00
 	brk $00.b		; 00 00
 	brk $00.b		; 00 00
-L008000:
+CODE_008000:
 	clc		; Clear carry
 	xce		; Exchange carry bit to set emulation or native mode
 	sei		; Disable interrupts
@@ -13895,40 +13895,40 @@ L008000:
 	rep #$30
 	lda #$01FF.w
 	tas
-	jmp L00A8E6.w
+	jmp CODE_00A8E6.w
 .BASE $80
-L808020:
+CODE_808020:
 .BASE $00
-L008020:
-	jsr L00A8C2.w
+CODE_008020:
+	jsr CODE_00A8C2.w
 	stz $24.b
 	stz $20.b
 	stz $26.b
 	lda #$FF00.w
 	sta $22.b
-L00802E:
+CODE_00802E:
 	lda #$FFFF.w
 	sta $0521.w
 	lda #$1234.w
 	sta $34.b
 	sta $36.b
-	jsl L8AB0ED.l
-	jsl L8AB133.l
-	jsl LB8932D.l
+	jsl CODE_8AB0ED.l
+	jsl CODE_8AB133.l
+	jsl CODE_B8932D.l
 .BASE $80
-L808047:
+CODE_808047:
 .BASE $00
-L008047:
+CODE_008047:
 	phk
 	plb
-	jsr L00BA43.w
+	jsr CODE_00BA43.w
 .ACCU 8
 	sep #$20
 	lda #$01.b
 .BASE $80
-L808050:
+CODE_808050:
 .BASE $00
-L008050:
+CODE_008050:
 	sta NMITIMEN.w		; Interrupt Enable Flags
 	stz HDMAEN.w		; HDMA Channel Enable
 	lda #$80.b
@@ -13941,7 +13941,7 @@ L008050:
 	sta $38.b
 	lda #$3765.w
 	sta $3A.b
-	jmp L00BA4E.w
+	jmp CODE_00BA4E.w
 .ACCU 8
 	sep #$20		; E2 20
 	lda #$01.b		; A9 01
@@ -14178,9 +14178,9 @@ L008050:
 	jsr $81F3.w		; 20 F3 81
 	phk		; 4B
 	plb		; AB
-	jsr L00A8C2.w		; 20 C2 A8
-	jsl LB88391.l		; 22 91 83 B8
-	jsr L00A8B7.w		; 20 B7 A8
+	jsr CODE_00A8C2.w		; 20 C2 A8
+	jsl CODE_B88391.l		; 22 91 83 B8
+	jsr CODE_00A8B7.w		; 20 B7 A8
 	lda $3E.b		; A5 3E
 	sta $1E39.w		; 8D 39 1E
 	jsr $82EB.w		; 20 EB 82
@@ -18543,15 +18543,15 @@ L008050:
 	sty $8E.b		; 84 8E
 	rts		; 60
 
-L00A8B7:
-	jsl LB882CF.l
+CODE_00A8B7:
+	jsl CODE_B882CF.l
 	rts
 
 	brk $00.b		; 00 00
-	jsr L00A8C2.w		; 20 C2 A8
+	jsr CODE_00A8C2.w		; 20 C2 A8
 	rtl		; 6B
 
-L00A8C2:
+CODE_00A8C2:
 	stz VMADDL.w		; VRAM Address Low Byte
 	lda #$A8BC.w
 	sta DMASRC0L.w		; DMA 0 Source Adress Low Byte
@@ -18569,8 +18569,8 @@ L00A8C2:
 	rep #$20
 	rts
 
-L00A8E6:
-	jsr L00A8B7.w
+CODE_00A8E6:
+	jsr CODE_00A8B7.w
 .ACCU 16
 	rep #$20
 	lda #$A91F.w
@@ -18594,9 +18594,9 @@ L00A8E6:
 	rep #$20
 	lda #$01FF.w
 	tas
-	jmp L008020.w
+	jmp CODE_008020.w
 	.db $00		; Opcode overrunning section
-L00A920:
+CODE_00A920:
 .ACCU 16
 	rep #$20
 	lda #$A91F.w
@@ -18636,12 +18636,12 @@ L00A920:
 	stz OAMADDL.w		; 9C 02 21
 	lda #$0001.w		; A9 01 00
 	sta MDMAEN.w		; 8D 0B 42
-	jmp L00A998.w		; 4C 98 A9
-	jmp L80A97A.l
+	jmp CODE_00A998.w		; 4C 98 A9
+	jmp CODE_80A97A.l
 .BASE $80
-L80A97A:
+CODE_80A97A:
 .BASE $00
-L00A97A:
+CODE_00A97A:
 .ACCU 16
 .INDEX 16
 	rep #$30
@@ -18662,7 +18662,7 @@ L00A97A:
 	sta INIDSP.w		; Screen Display
 .ACCU 16
 	rep #$20
-L00A998:
+CODE_00A998:
 .ACCU 16
 .INDEX 16
 	rep #$30
@@ -20588,25 +20588,25 @@ L00A998:
 	plb		; AB
 	rts		; 60
 
-L00BA43:
+CODE_00BA43:
 	stz $44.b
 	stz $42.b
 	lda #$0001.w
 	sta $056F.w
 	rts
 
-L00BA4E:
-	jsr L00BA43.w
+CODE_00BA4E:
+	jsr CODE_00BA43.w
 	lda #$002C.w
 	sta $3C.b
-	jsr L00A920.w
-	jsr L00A8B7.w
-	jsr L00A8C2.w
-	jsl LB88391.l
+	jsr CODE_00A920.w
+	jsr CODE_00A8B7.w
+	jsr CODE_00A8C2.w
+	jsl CODE_B88391.l
 	stz $28.b
-	jsl LB88263.l
+	jsl CODE_B88263.l
 	lda $0525.w
-	bne L00BA83.b
+	bne CODE_00BA83.b
 	lda #$3200.w
 	sta $16.b
 	lda #$3300.w
@@ -20614,13 +20614,13 @@ L00BA4E:
 	stz $1A.b
 	lda #$001B.w
 	jsl LB99023.l
-	bra L00BA8A.b
-L00BA83:
+	bra CODE_00BA8A.b
+CODE_00BA83:
 	lda #$000A.w
 	jsl LB99023.l
-L00BA8A:
+CODE_00BA8A:
 	lda #$000A.w
-	jsl L8AB1CB.l
+	jsl CODE_8AB1CB.l
 .ACCU 8
 	sep #$20
 	lda #$01.b
@@ -20646,15 +20646,15 @@ L00BA8A:
 	sta BG3SC.w		; BG3 Tilemap Address and Size
 	stz VMADDL.w		; VRAM Address Low Byte
 	ldx #$4000.w
-L00BACF:
+CODE_00BACF:
 	stz VMDATAL.w		; VRAM Data Write Low Byte
 	dex
-	bne L00BACF.b
+	bne CODE_00BACF.b
 	stz VMADDL.w		; VRAM Address Low Byte
 .ACCU 8
 	sep #$20
 	ldx #$0000.w
-L00BADD:
+CODE_00BADD:
 	txa
 	lsr A
 	lsr A
@@ -20666,14 +20666,14 @@ L00BADD:
 	sta VMDATAH.w		; VRAM Data Write High Byte
 	inx
 	cpx #$3400.w
-	bne L00BADD.b
+	bne CODE_00BADD.b
 .ACCU 16
 	rep #$20
 	lda #$038B.w
 	sta $4C.b
 	lda #$C50A.w
 	ldx #$00E9.w
-	jsr L00C0D7.w
+	jsr CODE_00C0D7.w
 	lda #$0100.w
 	sta $E3.b
 	sta $E1.b
@@ -20691,13 +20691,13 @@ L00BADD:
 .ACCU 16
 	rep #$20
 	lda #$7400.w
-	jsr L00C226.w
+	jsr CODE_00C226.w
 	lda #$7000.w
-	jsr L00C226.w
+	jsr CODE_00C226.w
 	lda #$7800.w
-	jsr L00C226.w
+	jsr CODE_00C226.w
 	lda #$7C00.w
-	jsr L00C226.w
+	jsr CODE_00C226.w
 	lda #$7054.w
 	sta VMADDL.w		; VRAM Address Low Byte
 	ldx #$00ED.w
@@ -20744,17 +20744,17 @@ L00BADD:
 	sta $051A.w
 	lda #$0000.w
 	ldx #$01FE.w
-L00BBCC:
+CODE_00BBCC:
 	sta $7F0000.l,X
 	dex
 	dex
-	bpl L00BBCC.b
+	bpl CODE_00BBCC.b
 	ldx #$001C.w
-L00BBD7:
+CODE_00BBD7:
 	stz $4C.b,X
 	dex
 	dex
-	bpl L00BBD7.b
+	bpl CODE_00BBD7.b
 	lda #$007F.w
 	sta $0687.w
 	lda #$0003.w
@@ -20822,7 +20822,7 @@ L00BBD7:
 	lda #$0001.w
 	sta $32.b
 	lda #$BC9E.w
-	jmp L00C20B.w
+	jmp CODE_00C20B.w
 	ldx #$01FF.w		; A2 FF 01
 	txs		; 9A
 	stz DMASRC1L.w		; 9C 12 43
@@ -20946,7 +20946,7 @@ L00BBD7:
 .ACCU 8
 	sep #$20		; E2 20
 	ldx #$00FE.w		; A2 FE 00
-	jsl L8AB1AF.l		; 22 AF B1 8A
+	jsl CODE_8AB1AF.l		; 22 AF B1 8A
 .ACCU 16
 .INDEX 16
 	rep #$30		; C2 30
@@ -21285,7 +21285,7 @@ L00BBD7:
 	lda #$01.b		; A9 01
 	sta NMITIMEN.w		; 8D 00 42
 	ldx #$00FF.w		; A2 FF 00
-	jsl L8AB1AF.l		; 22 AF B1 8A
+	jsl CODE_8AB1AF.l		; 22 AF B1 8A
 	stz OBJSEL.w		; 9C 01 21
 	stz SETINI.w		; 9C 33 21
 .ACCU 16
@@ -21294,7 +21294,7 @@ L00BBD7:
 	lda #$0009.w		; A9 09 00
 	jsl LB99023.l		; 22 23 90 B9
 	lda #$0009.w		; A9 09 00
-	jsl L8AB1CB.l		; 22 CB B1 8A
+	jsl CODE_8AB1CB.l		; 22 CB B1 8A
 .ACCU 8
 	sep #$20		; E2 20
 	lda #$82.b		; A9 82
@@ -21307,13 +21307,13 @@ L00BBD7:
 .ACCU 16
 	rep #$20		; C2 20
 	lda #$BC9E.w		; A9 9E BC
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	lda $051A.w		; AD 1A 05
 	bne  22.b		; D0 16
 .ACCU 8
 	sep #$20		; E2 20
 	ldx #$00FE.w		; A2 FE 00
-	jsl L8AB1AF.l		; 22 AF B1 8A
+	jsl CODE_8AB1AF.l		; 22 AF B1 8A
 .ACCU 16
 .INDEX 16
 	rep #$30		; C2 30
@@ -21325,7 +21325,7 @@ L00BBD7:
 	jsr $AF85.w		; 20 85 AF
 	wai		; CB
 	bra  -3.b		; 80 FD
-L00C0D7:
+CODE_00C0D7:
 	sta $4E.b
 	stx $50.b
 	stz $53.b
@@ -21339,13 +21339,13 @@ L00C0D7:
 	sta $52.b
 	iny
 	iny
-L00C0ED:
+CODE_00C0ED:
 	lda $4C.b
 	sta VMADDL.w		; VRAM Address Low Byte
 	lda $52.b
 	and #$00FF.w
 	tax
-L00C0F8:
+CODE_00C0F8:
 .ACCU 8
 	sep #$20
 	lda [$4E.b],Y
@@ -21354,13 +21354,13 @@ L00C0F8:
 	rep #$20
 	iny
 	dex
-	bne L00C0F8.b
+	bne CODE_00C0F8.b
 	lda $4C.b
 	clc		; Clear carry
 	adc #$0080.w
 	sta $4C.b
 	dec $53.b
-	bne L00C0ED.b
+	bne CODE_00C0ED.b
 .ACCU 8
 	sep #$20
 	lda #$80.b
@@ -21476,24 +21476,24 @@ L00C0F8:
 	sta $0504.w		; 8D 04 05
 	rts		; 60
 
-L00C20B:
+CODE_00C20B:
 	sta $1C.b
 .ACCU 8
 	sep #$20
 	lda RDNMI.w		; NMI Flag and 5A22 Version
-L00C212:
+CODE_00C212:
 	lda RDNMI.w		; NMI Flag and 5A22 Version
 	and #$80.b
-	bne L00C212.b
+	bne CODE_00C212.b
 .ACCU 8
 	sep #$20
 	lda #$B1.b
 	sta NMITIMEN.w		; Interrupt Enable Flags
 	stz JOYSER0.w		; Joypad Port 1
-L00C223:
+CODE_00C223:
 	wai
-	bra L00C223.b
-L00C226:
+	bra CODE_00C223.b
+CODE_00C226:
 	sta VMADDL.w		; VRAM Address Low Byte
 	lda #$C233.w
 	sta DMASRC0L.w		; DMA 0 Source Adress Low Byte
@@ -22343,9 +22343,9 @@ L00C226:
 	jmp $A211.w		; 4C 11 A2
 	jsr $C904.w		; 20 04 C9
 	jsr $E98D.w		; 20 8D E9
-	jsr L00BA43.w		; 20 43 BA
-	jsr L00A8B7.w		; 20 B7 A8
-	jsl LB88391.l		; 22 91 83 B8
+	jsr CODE_00BA43.w		; 20 43 BA
+	jsr CODE_00A8B7.w		; 20 B7 A8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0001.w		; A9 01 00
 	sta BGMODE.w		; 8D 05 21
@@ -22370,9 +22370,9 @@ L00C226:
 	ldy #$8000.w		; A0 00 80
 	jsl LB999AD.l		; 22 AD 99 B9
 	lda #$7800.w		; A9 00 78
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7C00.w		; A9 00 7C
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7840.w		; A9 40 78
 	sta VMADDL.w		; 8D 16 21
 	ldx #$00EE.w		; A2 EE 00
@@ -22585,12 +22585,12 @@ L00C226:
 	inc $1DFD.w		; EE FD 1D
 	lda #$7FFF.w		; A9 FF 7F
 	sta $0A7B.w		; 8D 7B 0A
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	stz $057D.w		; 9C 7D 05
 	stz $28.b		; 64 28
 	lda #$CC69.w		; A9 69 CC
-	jmp L00C20B.w		; 4C 0B C2
-L00CC47:
+	jmp CODE_00C20B.w		; 4C 0B C2
+CODE_00CC47:
 	lda #$0200.w
 	sta DMASRC0L.w		; DMA 0 Source Adress Low Byte
 	sta HDMATBL0L.w		; HDMA 0 Table Address Low Byte
@@ -22888,7 +22888,7 @@ L00CC47:
 	jmp $F6BF.w		; 4C BF F6
 	jsr $CEE0.w		; 20 E0 CE
 	jsr $C91E.w		; 20 1E C9
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	wai		; CB
 	bra  -3.b		; 80 FD
 	ldx #$0000.w		; A2 00 00
@@ -23529,7 +23529,7 @@ L00CC47:
 	rts		; 60
 
 	jsr $C904.w		; 20 04 C9
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 .ACCU 8
 	sep #$20		; E2 20
 	lda #$01.b		; A9 01
@@ -23556,9 +23556,9 @@ L00CC47:
 	ldy #$7000.w		; A0 00 70
 	jsl LB999AD.l		; 22 AD 99 B9
 	lda #$7400.w		; A9 00 74
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7800.w		; A9 00 78
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7800.w		; A9 00 78
 	sta VMADDL.w		; 8D 16 21
 	ldy #$06FE.w		; A0 FE 06
@@ -23627,7 +23627,7 @@ L00CC47:
 	rep #$20		; C2 20
 	stz $28.b		; 64 28
 	lda #$DA98.w		; A9 98 DA
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ora ($0F.b,X)		; 01 0F
 	ora ($0F.b,X)		; 01 0F
 	ora ($0F.b,X)		; 01 0F
@@ -24610,8 +24610,8 @@ L00CC47:
 	.db $82, $82, $81		; 82 82 81
 	sta ($81.b,X)		; 81 81
 	jsr $C904.w		; 20 04 C9
-	jsl LB88391.l		; 22 91 83 B8
-	jsr L00A8B7.w		; 20 B7 A8
+	jsl CODE_B88391.l		; 22 91 83 B8
+	jsr CODE_00A8B7.w		; 20 B7 A8
 	lda #$000F.w		; A9 0F 00
 	jsl $B99036.l		; 22 36 90 B9
 	jsr $A202.w		; 20 02 A2
@@ -24652,7 +24652,7 @@ L00CC47:
 	rep #$20		; C2 20
 	stz $28.b		; 64 28
 	lda #$DEAC.w		; A9 AC DE
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ldx #$02FE.w		; A2 FE 02
 	txs		; 9A
 	stz OAMADDL.w		; 9C 02 21
@@ -24707,7 +24707,7 @@ L00CC47:
 	wai		; CB
 	bra  -3.b		; 80 FD
 	jsr $C904.w		; 20 04 C9
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0001.w		; A9 01 00
 	sta BGMODE.w		; 8D 05 21
@@ -24737,11 +24737,11 @@ L00CC47:
 	ldy #$2600.w		; A0 00 26
 	jsl LB999AD.l		; 22 AD 99 B9
 	lda #$7400.w		; A9 00 74
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7800.w		; A9 00 78
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7C00.w		; A9 00 7C
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7800.w		; A9 00 78
 	sta VMADDL.w		; 8D 16 21
 	ldx #$0000.w		; A2 00 00
@@ -24788,10 +24788,10 @@ L00CC47:
 .ACCU 16
 	rep #$20		; C2 20
 	stz $056D.w		; 9C 6D 05
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	stz $28.b		; 64 28
 	lda #$E047.w		; A9 47 E0
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	rti		; 40
 
 	cop $01.b		; 02 01
@@ -25037,7 +25037,7 @@ L00CC47:
 	jsl $B99049.l		; 22 49 90 B9
 	phk		; 4B
 	plb		; AB
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $E964.w		; 20 64 E9
 	lda #$0010.w		; A9 10 00
 	sta $0D45.w		; 8D 45 0D
@@ -25200,7 +25200,7 @@ L00CC47:
 	inx		; E8
 	cpx #$0034.w		; E0 34 00
 	bne -16.b		; D0 F0
-	jsr L00A8B7.w		; 20 B7 A8
+	jsr CODE_00A8B7.w		; 20 B7 A8
 	jsr $A202.w		; 20 02 A2
 	lda #$0001.w		; A9 01 00
 	sta BGMODE.w		; 8D 05 21
@@ -25414,9 +25414,9 @@ L00CC47:
 	sta MEMSEL.w		; 8D 0D 42
 .ACCU 16
 	rep #$20		; C2 20
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	lda #$E677.w		; A9 77 E6
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	lda #$0000.w		; A9 00 00
 	ldy #$0004.w		; A0 04 00
 	cmp $0D45.w,Y		; D9 45 0D
@@ -25497,9 +25497,9 @@ L00CC47:
 	sta MEMSEL.w		; 8D 0D 42
 .ACCU 16
 	rep #$20		; C2 20
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	lda #$E677.w		; A9 77 E6
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	lda $28.b		; A5 28
 	inc A		; 1A
 	bne   3.b		; D0 03
@@ -25663,7 +25663,7 @@ L00CC47:
 	jsr $C91E.w		; 20 1E C9
 	jsl $BCF15C.l		; 22 5C F1 BC
 	jsl $B8A02A.l		; 22 2A A0 B8
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	wai		; CB
 	bra  -3.b		; 80 FD
 	sta VMADDL.w		; 8D 16 21
@@ -25769,7 +25769,7 @@ L00CC47:
 	rts		; 60
 
 	lda #$2000.w		; A9 00 20
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$20A0.w		; A9 A0 20
 	sta VMADDL.w		; 8D 16 21
 	ldx #$00E5.w		; A2 E5 00
@@ -25778,7 +25778,7 @@ L00CC47:
 	jsl LB999AD.l		; 22 AD 99 B9
 	jmp $E9EA.w		; 4C EA E9
 	lda #$2000.w		; A9 00 20
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$20C0.w		; A9 C0 20
 	sta VMADDL.w		; 8D 16 21
 	ldx #$00E5.w		; A2 E5 00
@@ -25787,7 +25787,7 @@ L00CC47:
 	jsl LB999AD.l		; 22 AD 99 B9
 	jmp $E9EA.w		; 4C EA E9
 	lda #$2000.w		; A9 00 20
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$20A0.w		; A9 A0 20
 	sta VMADDL.w		; 8D 16 21
 	ldx #$00E5.w		; A2 E5 00
@@ -25825,7 +25825,7 @@ L00CC47:
 .ACCU 16
 	rep #$20		; C2 20
 	lda #$EA43.w		; A9 43 EA
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ldx #$02FE.w		; A2 FE 02
 	txs		; 9A
 .ACCU 8
@@ -25840,7 +25840,7 @@ L00CC47:
 	jsr $C904.w		; 20 04 C9
 	lda #$0017.w		; A9 17 00
 	jsl $B99049.l		; 22 49 90 B9
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0413.w		; A9 13 04
 	sta TMAIN.w		; 8D 2C 21
@@ -26135,10 +26135,10 @@ L00CC47:
 	sta MEMSEL.w		; 8D 0D 42
 .ACCU 16
 	rep #$20		; C2 20
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	stz $28.b		; 64 28
 	lda #$EE54.w		; A9 54 EE
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	lda #$0100.w		; A9 00 01
 	sta $0B8D.w		; 8D 8D 0B
 	lda #$0100.w		; A9 00 01
@@ -26189,7 +26189,7 @@ L00CC47:
 	lda #$0074.w		; A9 74 00
 	sta BG3SC.w		; 8D 09 21
 	lda #$6000.w		; A9 00 60
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$6100.w		; A9 00 61
 	sta VMADDL.w		; 8D 16 21
 	ldx #$00E9.w		; A2 E9 00
@@ -26197,11 +26197,11 @@ L00CC47:
 	ldy #$0600.w		; A0 00 06
 	jsl LB999AD.l		; 22 AD 99 B9
 	lda #$7400.w		; A9 00 74
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7800.w		; A9 00 78
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7C00.w		; A9 00 7C
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	ldx #$0000.w		; A2 00 00
 	lda $81CEB5.l,X		; BF B5 CE 81
 	sta $0687.w,X		; 9D 87 06
@@ -26344,13 +26344,13 @@ L00CC47:
 	jmp $810E.w		; 4C 0E 81
 	jsr $CEE0.w		; 20 E0 CE
 	jsr $C91E.w		; 20 1E C9
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	wai		; CB
 	bra  -3.b		; 80 FD
 	jsr $C904.w		; 20 04 C9
 	lda #$0016.w		; A9 16 00
 	jsl $B99049.l		; 22 49 90 B9
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0009.w		; A9 09 00
 	sta BGMODE.w		; 8D 05 21
@@ -26468,10 +26468,10 @@ L00CC47:
 	sta MEMSEL.w		; 8D 0D 42
 .ACCU 16
 	rep #$20		; C2 20
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	stz $28.b		; 64 28
 	lda #$F0F3.w		; A9 F3 F0
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ldx #$01FF.w		; A2 FF 01
 	txs		; 9A
 	stz OAMADDL.w		; 9C 02 21
@@ -26596,11 +26596,11 @@ L00CC47:
 	jmp $E1BE.w		; 4C BE E1
 	jsr $CEE0.w		; 20 E0 CE
 	jsr $C91E.w		; 20 1E C9
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	wai		; CB
 	bra  -3.b		; 80 FD
 	jsr $C904.w		; 20 04 C9
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0001.w		; A9 01 00
 	sta BGMODE.w		; 8D 05 21
@@ -26615,7 +26615,7 @@ L00CC47:
 	ldy #$2000.w		; A0 00 20
 	jsl LB999AD.l		; 22 AD 99 B9
 	lda #$7C00.w		; A9 00 7C
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7D00.w		; A9 00 7D
 	sta VMADDL.w		; 8D 16 21
 	ldx #$00E4.w		; A2 E4 00
@@ -26639,7 +26639,7 @@ L00CC47:
 	rep #$20		; C2 20
 	stz $28.b		; 64 28
 	lda #$F29C.w		; A9 9C F2
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ldx #$01FF.w		; A2 FF 01
 	txs		; 9A
 	stz OAMADDL.w		; 9C 02 21
@@ -26691,7 +26691,7 @@ L00CC47:
 	stz SETINI.w		; 9C 33 21
 .ACCU 16
 	rep #$20		; C2 20
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0001.w		; A9 01 00
 	sta BGMODE.w		; 8D 05 21
@@ -26729,7 +26729,7 @@ L00CC47:
 	rep #$20		; C2 20
 	stz $28.b		; 64 28
 	lda #$F387.w		; A9 87 F3
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ldx #$01FF.w		; A2 FF 01
 	txs		; 9A
 	stz OAMADDL.w		; 9C 02 21
@@ -26766,7 +26766,7 @@ L00CC47:
 	stz $28.b		; 64 28
 	lda #$0014.w		; A9 14 00
 	jsl $B99049.l		; 22 49 90 B9
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0411.w		; A9 11 04
 	sta TMAIN.w		; 8D 2C 21
@@ -26915,10 +26915,10 @@ L00CC47:
 	sta MEMSEL.w		; 8D 0D 42
 .ACCU 16
 	rep #$20		; C2 20
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	stz $28.b		; 64 28
 	lda #$F592.w		; A9 92 F5
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ldx #$01FF.w		; A2 FF 01
 	txs		; 9A
 	stz OAMADDL.w		; 9C 02 21
@@ -27037,7 +27037,7 @@ L00CC47:
 	jmp $E1BE.w		; 4C BE E1
 	jsr $CEE0.w		; 20 E0 CE
 	jsr $C91E.w		; 20 1E C9
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	wai		; CB
 	bra  -3.b		; 80 FD
 	cpx $E8ED.w		; EC ED E8
@@ -27047,7 +27047,7 @@ L00CC47:
 	brk $1C.b		; 00 1C
 	adc #$2005.w		; 69 05 20
 	lda [$A8.b],Y		; B7 A8
-	jsl LB88391.l		; 22 91 83 B8
+	jsl CODE_B88391.l		; 22 91 83 B8
 	jsr $A202.w		; 20 02 A2
 	lda #$0001.w		; A9 01 00
 	sta BGMODE.w		; 8D 05 21
@@ -27078,11 +27078,11 @@ L00CC47:
 	ldy #$2600.w		; A0 00 26
 	jsl LB999AD.l		; 22 AD 99 B9
 	lda #$7400.w		; A9 00 74
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7800.w		; A9 00 78
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7C00.w		; A9 00 7C
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda $057D.w		; AD 7D 05
 	bit #$0020.w		; 89 20 00
 	beq  40.b		; F0 28
@@ -27159,10 +27159,10 @@ L00CC47:
 	stz $74.b
 	stz $7A.b
 	stz $056D.w
-	jsr L00CC47.w
+	jsr CODE_00CC47.w
 	stz $28.b
 	lda #$F848.w
-	jmp L00C20B.w
+	jmp CODE_00C20B.w
 	brk $80.b		; 00 80
 	bra   0.b		; 80 00
 	brk $04.b		; 00 04
@@ -27329,9 +27329,9 @@ L00CC47:
 	sta MEMSEL.w		; 8D 0D 42
 .ACCU 16
 	rep #$20		; C2 20
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	lda #$F848.w		; A9 48 F8
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	lda $056B.w		; AD 6B 05
 	bit #$0004.w		; 89 04 00
 	bne  64.b		; D0 40
@@ -27543,7 +27543,7 @@ L00CC47:
 	ldy #$1000.w		; A0 00 10
 	jsl LB999AD.l		; 22 AD 99 B9
 	lda #$7400.w		; A9 00 74
-	jsr L00C226.w		; 20 26 C2
+	jsr CODE_00C226.w		; 20 26 C2
 	lda #$7460.w		; A9 60 74
 	sta VMADDL.w		; 8D 16 21
 	ldx #$00E8.w		; A2 E8 00
@@ -27565,10 +27565,10 @@ L00CC47:
 	sta MEMSEL.w		; 8D 0D 42
 .ACCU 16
 	rep #$20		; C2 20
-	jsr L00CC47.w		; 20 47 CC
+	jsr CODE_00CC47.w		; 20 47 CC
 	stz $28.b		; 64 28
 	lda #$FBFB.w		; A9 FB FB
-	jmp L00C20B.w		; 4C 0B C2
+	jmp CODE_00C20B.w		; 4C 0B C2
 	ldx #$02FE.w		; A2 FE 02
 	txs		; 9A
 	lda #$D5C3.w		; A9 C3 D5

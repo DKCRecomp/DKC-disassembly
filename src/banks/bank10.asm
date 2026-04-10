@@ -6674,7 +6674,7 @@
 	ora ($FE.b,X)		; 01 FE
 	adc $314E80.l,X		; 7F 80 4E 31
 	asl $1F.b		; 06 1F
-	jsr L0AB481.w		; 20 81 B4
+	jsr CODE_0AB481.w		; 20 81 B4
 	brk $B6.b		; 00 B6
 	ora ($00.b,X)		; 01 00
 	sbc $00BF00.l,X		; FF 00 BF 00
@@ -19860,44 +19860,44 @@
 	.db $3F		; Opcode overrunning section
 	.db $00		; Opcode overrunning section
 .BASE $80
-L8AB0ED:
+CODE_8AB0ED:
 .BASE $00
-L0AB0ED:
+CODE_0AB0ED:
 	php
 .ACCU 16
 	rep #$20
 .INDEX 8
 	sep #$10
 	lda #$BBAA.w
-L0AB0F5:
+CODE_0AB0F5:
 	cmp $2140.w
-	bne L0AB0F5.b
+	bne CODE_0AB0F5.b
 	lda #$04B8.w
 	sta APUIO2.w		; APU I/O Port 2
 	lda #$01CC.w
 	sta APUIO0.w		; APU I/O Port 0
 	tax
-L0AB107:
+CODE_0AB107:
 	cpx APUIO0.w		; APU I/O Port 0
-	bne L0AB107.b
+	bne CODE_0AB107.b
 	ldx #$00.b
-L0AB10E:
+CODE_0AB10E:
 	lda $8AA342.l,X
 	tay
 	sty APUIO1.w		; APU I/O Port 1
 	stx APUIO0.w		; APU I/O Port 0
-L0AB119:
+CODE_0AB119:
 	cpx APUIO0.w		; APU I/O Port 0
-	bne L0AB119.b
+	bne CODE_0AB119.b
 	inx
 	cpx #$28.b
-	bne L0AB10E.b
+	bne CODE_0AB10E.b
 	inx
 	txa
 	sta APUIO0.w		; APU I/O Port 0
-L0AB128:
+CODE_0AB128:
 	cpx APUIO0.w		; APU I/O Port 0
-	bne L0AB128.b
+	bne CODE_0AB128.b
 	stx $00.b
 .ACCU 16
 	rep #$20
@@ -19905,9 +19905,9 @@ L0AB128:
 	rtl
 
 .BASE $80
-L8AB133:
+CODE_8AB133:
 .BASE $00
-L0AB133:
+CODE_0AB133:
 	php
 .ACCU 8
 	sep #$20
@@ -19922,12 +19922,12 @@ L0AB133:
 	lda #$E8.b
 	xba
 	lda #$04.b
-	jsr L0AB504.w
+	jsr CODE_0AB504.w
 	ldx #$2D95.w
 	stx $4C.b
 	lda #$C9.b
 	sta $4E.b
-	jsr L0AB4EB.w
+	jsr CODE_0AB4EB.w
 .ACCU 16
 	rep #$20
 	plp
@@ -19971,18 +19971,18 @@ L0AB133:
 	sep #$D3		; E2 D3
 	bit #$D3E7.w		; 89 E7 D3
 .BASE $80
-L8AB1AF:
+CODE_8AB1AF:
 .BASE $00
-L0AB1AF:
+CODE_0AB1AF:
 	php
 .ACCU 8
 	sep #$20
 .INDEX 16
 	rep #$10
-L0AB1B4:
+CODE_0AB1B4:
 	lda APUIO0.w		; APU I/O Port 0
 	eor $00.b
-	bne L0AB1B4.b
+	bne CODE_0AB1B4.b
 	stx APUIO1.w		; APU I/O Port 1
 	lda $00.b
 	eor #$80.b
@@ -19993,9 +19993,9 @@ L0AB1B4:
 	rtl
 
 .BASE $80
-L8AB1CB:
+CODE_8AB1CB:
 .BASE $00
-L0AB1CB:
+CODE_0AB1CB:
 .ACCU 16
 .INDEX 16
 	rep #$30
@@ -20016,26 +20016,26 @@ L0AB1CB:
 	and #$00FF.w
 	sta $4E.b
 	ldx $4C.b
-	jsr L0AB4EB.w
+	jsr CODE_0AB4EB.w
 .ACCU 8
 	sep #$20
 .INDEX 16
 	rep #$10
 	ldy #$05E8.w
-L0AB1F4:
+CODE_0AB1F4:
 	lda APUIO0.w		; APU I/O Port 0
 	eor $00.b
-	bne L0AB1F4.b
+	bne CODE_0AB1F4.b
 	sty APUIO2.w		; APU I/O Port 2
 	lda $00.b
 	eor #$80.b
 	and #$80.b
 	sta $00.b
 	sta APUIO0.w		; APU I/O Port 0
-L0AB209:
+CODE_0AB209:
 	lda APUIO1.w		; APU I/O Port 1
 	cmp #$FF.b
-	bne L0AB209.b
+	bne CODE_0AB209.b
 	plp
 	rtl
 
@@ -20272,9 +20272,9 @@ L0AB209:
 	rtl		; 6B
 
 .BASE $80
-L8AB414:
+CODE_8AB414:
 .BASE $00
-L0AB414:
+CODE_0AB414:
 .ACCU 16
 .INDEX 16
 	rep #$30
@@ -20284,7 +20284,7 @@ L0AB414:
 	sta $12.b
 	lda #$008A.w
 	sta $14.b
-	jsr L0AB43C.w
+	jsr CODE_0AB43C.w
 .ACCU 16
 	rep #$20
 	rtl
@@ -20298,8 +20298,8 @@ L0AB414:
 	lda #$3300.w		; A9 00 33
 	sta $06.b		; 85 06
 	stz $10.b		; 64 10
-	bra L0AB44F.b		; 80 13
-L0AB43C:
+	bra CODE_0AB44F.b		; 80 13
+CODE_0AB43C:
 .ACCU 16
 .INDEX 16
 	rep #$30
@@ -20310,11 +20310,11 @@ L0AB43C:
 	sta $06.b
 	lda $1A.b
 	sta $10.b
-	bra L0AB44F.b
-L0AB44F:
+	bra CODE_0AB44F.b
+CODE_0AB44F:
 	lda [$12.b],Y
 	cmp #$FFFF.w
-	beq L0AB4CF.b
+	beq CODE_0AB4CF.b
 	phy
 	tax
 .ACCU 8
@@ -20337,7 +20337,7 @@ L0AB44F:
 	ldy #$0000.w
 	lda [$4C.b],Y
 	sta $0C.b
-L0AB481:
+CODE_0AB481:
 	iny
 	iny
 	lda [$4C.b],Y
@@ -20349,7 +20349,7 @@ L0AB481:
 	lda $06.b
 	xba
 	lda $07.b
-	jsr L0AB504.w
+	jsr CODE_0AB504.w
 .ACCU 16
 	rep #$20
 	lda $06.b
@@ -20368,7 +20368,7 @@ L0AB481:
 	lda $04.b
 	xba
 	lda $05.b
-	jsr L0AB504.w
+	jsr CODE_0AB504.w
 .ACCU 16
 	rep #$20
 	lda $04.b
@@ -20382,26 +20382,26 @@ L0AB481:
 	ply
 	iny
 	iny
-	jmp L0AB44F.w
-L0AB4CF:
+	jmp CODE_0AB44F.w
+CODE_0AB4CF:
 	lda #$6FFC.w
 	sta $4C.b
 	lda #$007E.w
 	sta $4E.b
 	lda #$00FF.w
-L0AB4DC:
+CODE_0AB4DC:
 	sta $4F.b
 .ACCU 8
 	sep #$20
 	lda #$E8.b
 	xba
 	lda #$04.b
-	jsr L0AB504.w
+	jsr CODE_0AB504.w
 .ACCU 16
 	rep #$20
 	rts
 
-L0AB4EB:
+CODE_0AB4EB:
 	php
 .ACCU 8
 	sep #$20
@@ -20419,7 +20419,7 @@ L0AB4EB:
 	iny
 	lda [$4C.b],Y
 	plp
-L0AB504:
+CODE_0AB504:
 	php
 .ACCU 8
 	sep #$20
@@ -20429,14 +20429,14 @@ L0AB504:
 	clc		; Clear carry
 	adc $4C.b
 	sta $4C.b
-	bcc L0AB514.b
+	bcc CODE_0AB514.b
 	inc $4D.b
-L0AB514:
+CODE_0AB514:
 	ldy #$0000.w
-L0AB517:
+CODE_0AB517:
 	lda APUIO0.w		; APU I/O Port 0
 	eor $00.b
-	bne L0AB517.b
+	bne CODE_0AB517.b
 	lda [$4C.b],Y
 	sta APUIO1.w		; APU I/O Port 1
 	stx APUIO2.w		; APU I/O Port 2
@@ -20448,7 +20448,7 @@ L0AB517:
 	inx
 	iny
 	cpy $4F.b
-	bne L0AB517.b
+	bne CODE_0AB517.b
 	plp
 	rts
 
@@ -20471,7 +20471,7 @@ L0AB517:
 	sta $60.b,S		; 83 60
 	txa		; 8A
 	bmi 112.b		; 30 70
-	bvs L0AB4DC.b		; 70 80
+	bvs CODE_0AB4DC.b		; 70 80
 	bvs -101.b		; 70 9B
 	mvn $38,$82		; 54 82 38
 	ply		; 7A
@@ -26117,7 +26117,7 @@ L0AB517:
 	php		; 08
 	stz $0008.w		; 9C 08 00
 	php		; 08
-	jsl L008000.l		; 22 00 80 00
+	jsl CODE_008000.l		; 22 00 80 00
 	brk $00.b		; 00 00
 	bra  32.b		; 80 20
 	brk $A0.b		; 00 A0

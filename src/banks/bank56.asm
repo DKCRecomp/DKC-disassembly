@@ -15027,9 +15027,9 @@
 	rts		; 60
 
 .BASE $A0
-LB88263:
+CODE_B88263:
 .BASE $00
-L388263:
+CODE_388263:
 	stz $1DF5.w
 	stz $1DF7.w
 	stz $1DF9.w
@@ -15079,25 +15079,25 @@ L388263:
 	brk $11.b		; 00 11
 	.db $00		; Opcode overrunning section
 .BASE $A0
-LB882CF:
+CODE_B882CF:
 .BASE $00
-L3882CF:
+CODE_3882CF:
 .ACCU 8
 .INDEX 8
 	sep #$30
 	ldx #$00.b
-L3882D3:
+CODE_3882D3:
 	stz $2101.w,X
 	stz $2101.w,X
 	inx
 	cpx #$2D.b
-	bne L3882D3.b
+	bne CODE_3882D3.b
 	ldx #$00.b
-L3882E0:
+CODE_3882E0:
 	stz $4202.w,X
 	inx
 	cpx #$0B.b
-	bne L3882E0.b
+	bne CODE_3882E0.b
 	lda #$8F.b
 	sta INIDSP.w		; Screen Display
 	lda #$80.b
@@ -15132,7 +15132,7 @@ L3882E0:
 .ACCU 8
 	sep #$20
 	ldx #$000A.w
-L38833D:
+CODE_38833D:
 	stz $4300.w,X
 	stz $4310.w,X
 	stz $4320.w,X
@@ -15142,7 +15142,7 @@ L38833D:
 	stz $4360.w,X
 	stz $4370.w,X
 	dex
-	bpl L38833D.b
+	bpl CODE_38833D.b
 .ACCU 16
 	rep #$20
 	rtl
@@ -15173,35 +15173,35 @@ L38833D:
 	rtl		; 6B
 
 .BASE $A0
-LB88391:
+CODE_B88391:
 .BASE $00
-L388391:
-	jsr L388398.w
-	jsr L3883A8.w
+CODE_388391:
+	jsr CODE_388398.w
+	jsr CODE_3883A8.w
 	rtl
 
-L388398:
+CODE_388398:
 	ldx #$0100.w
 .ACCU 8
 	sep #$20
-L38839D:
+CODE_38839D:
 	dex
 	stz $00.b,X
 	cpx #$004A.w
-	bne L38839D.b
+	bne CODE_38839D.b
 .ACCU 16
 	rep #$20
 	rts
 
-L3883A8:
+CODE_3883A8:
 	ldx #$2000.w
 .ACCU 8
 	sep #$20
-L3883AD:
+CODE_3883AD:
 	dex
 	stz $00.b,X
 	cpx #$0687.w
-	bne L3883AD.b
+	bne CODE_3883AD.b
 .ACCU 16
 	rep #$20
 	rts
@@ -16988,42 +16988,42 @@ L3883AD:
 	eor $53.b		; 45 53
 	.db $45		; Opcode overrunning section
 .BASE $A0
-LB8932D:
+CODE_B8932D:
 .BASE $00
-L38932D:
+CODE_38932D:
 	phb
 	ldx #$0000.w
-L389331:
+CODE_389331:
 	lda $B06000.l
 	cmp $B8930D.l,X
-	beq L38934B.b
+	beq CODE_38934B.b
 	txa
 	clc		; Clear carry
 	adc #$0008.w
 	tax
 	cpx #$0018.w
-	bne L389331.b
-L389346:
+	bne CODE_389331.b
+CODE_389346:
 	stz $0567.w
-L389349:
+CODE_389349:
 	plb
 	rtl
 
-L38934B:
+CODE_38934B:
 	lda $B06002.l
 	cmp $B8930F.l,X
-	bne L389346.b
+	bne CODE_389346.b
 	lda $B06004.l
 	cmp $B89311.l,X
-	bne L389346.b
+	bne CODE_389346.b
 	lda $B06006.l
 	cmp $B89313.l,X
-	bne L389346.b
+	bne CODE_389346.b
 	txa
 	lsr A
 	lsr A
 	sta $0567.w
-	bra L389349.b
+	bra CODE_389349.b
 	jsr $9431.w		; 20 31 94
 	lda $44.b		; A5 44
 	eor #$0001.w		; 49 01 00
@@ -17496,7 +17496,7 @@ L38934B:
 .ACCU 16
 .INDEX 16
 	rep #$30		; C2 30
-	jmp L808047.l		; 5C 47 80 80
+	jmp CODE_808047.l		; 5C 47 80 80
 	lda $0581.w		; AD 81 05
 	jsl $B8966F.l		; 22 6F 96 B8
 	lda $42.b		; A5 42

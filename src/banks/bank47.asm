@@ -10281,7 +10281,7 @@
 	jsr ($0706.w,X)		; FC 06 07
 	cop $03.b		; 02 03
 	bmi  80.b		; 30 50
-	jmp L00802E.l		; 5C 2E 80 00
+	jmp CODE_00802E.l		; 5C 2E 80 00
 	cpy #$C0.b		; C0 C0
 	sed		; F8
 	brk $FF.b		; 00 FF

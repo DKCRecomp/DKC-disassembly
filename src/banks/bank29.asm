@@ -13165,7 +13165,7 @@
 	php		; 08
 	inc $84.b,X		; F6 84
 	adc $3B46.w,X		; 7D 46 3B
-	jsl L800000.l		; 22 00 00 80
+	jsl CODE_800000.l		; 22 00 00 80
 	brk $20.b		; 00 20
 	cpy #$18.b		; C0 18
 	cpx #$0C.b		; E0 0C

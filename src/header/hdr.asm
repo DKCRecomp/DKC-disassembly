@@ -59,16 +59,16 @@
   COP $2059
   BRK $7003
   ABORT $0000
-  NMI L002976
-  IRQ L00299E
+  NMI CODE_002976
+  IRQ CODE_00299E
   UNUSED $0000
 .ENDNATIVEVECTOR
 
 .SNESEMUVECTOR                  ; Define Emulation Mode interrupt vector table
   COP $5945
   ABORT $474E
-  NMI L007800
-  RESET L000000              ; where execution starts
+  NMI CODE_007800
+  RESET CODE_000000              ; where execution starts
   IRQBRK $7000
   UNUSED $4F4B
 .ENDEMUVECTOR
