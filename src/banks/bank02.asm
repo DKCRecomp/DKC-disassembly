@@ -1,7 +1,7 @@
 .BANK 2 SLOT 0
 .ORG $0000
 
-.SECTION "Bank2" FORCE
+.SECTION "Bank02" FORCE
 
 	brk $00.b		; 00 00
 	brk $00.b		; 00 00

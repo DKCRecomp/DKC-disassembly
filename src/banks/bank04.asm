@@ -1,7 +1,7 @@
 .BANK 4 SLOT 0
 .ORG $0000
 
-.SECTION "Bank4" FORCE
+.SECTION "Bank04" FORCE
 
 	brk $04.b		; 00 04
 	ora ($04.b,X)		; 01 04

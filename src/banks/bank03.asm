@@ -1,7 +1,7 @@
 .BANK 3 SLOT 0
 .ORG $0000
 
-.SECTION "Bank3" FORCE
+.SECTION "Bank03" FORCE
 
 	and $00.b		; 25 00
 	and $00.b		; 25 00

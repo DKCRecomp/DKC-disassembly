@@ -1,7 +1,7 @@
 .BANK 1 SLOT 0
 .ORG $0000
 
-.SECTION "Bank1" FORCE
+.SECTION "Bank01" FORCE
 
 	ora ($03.b,X)		; 01 03
 	cop $00.b		; 02 00

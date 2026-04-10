@@ -1,7 +1,7 @@
 .BANK 5 SLOT 0
 .ORG $0000
 
-.SECTION "Bank5" FORCE
+.SECTION "Bank05" FORCE
 
 	asl $A009.w		; 0E 09 A0
 	ora ($B2.b)		; 12 B2

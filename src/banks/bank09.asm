@@ -1,7 +1,7 @@
 .BANK 9 SLOT 0
 .ORG $0000
 
-.SECTION "Bank9" FORCE
+.SECTION "Bank09" FORCE
 
 	bit $08.b,X		; 34 08
 	ldy #$12.b		; A0 12

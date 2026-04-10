@@ -1,7 +1,7 @@
 .BANK 6 SLOT 0
 .ORG $0000
 
-.SECTION "Bank6" FORCE
+.SECTION "Bank06" FORCE
 
 	adc $09.b,X		; 75 09
 	ldy #$12.b		; A0 12
