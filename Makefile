@@ -32,10 +32,12 @@ SRC=$(CURDIR)/src
 BUILD_DIR=$(CURDIR)/build
 TARGET=$(BUILD_DIR)/$(ROM)
 
-# ---------------
+# ------------------
 
 all: check-wla create-build-dir graphics sound spc700 encodings $(TARGET)
 	echo "Done"
+
+# ------------------
 
 # Check if WLA-DX binaries are available
 .PHONY: check-wla
@@ -68,6 +70,8 @@ check-wla:
 		exit 1; \
 	}
 
+# ------------------
+
 .PHONY: create-build-dir
 create-build-dir:
 	mkdir -p $(BUILD_DIR)
@@ -87,11 +91,17 @@ graphics: $(patsubst %.bmp,%.chr,$(wildcard *2bpp.bmp *3bpp.bmp *4bpp.bmp *8bpp.
 %8bpp.chr: %8bpp.bmp
 	$(BMP2CHR) -b8 -o $@ $<
 
+# ------------------
+
 .PHONY: sound
 sound: $(patsubst %.wav,%.brr,$(wildcard *.wav))
 
+# ------------------
+
 %.brr: %.wav
 	$(BRR) encode -o $@ $<
+	
+# ------------------
 
 .PHONY: spc700
 spc700: $(patsubst %.S,%.spc,$(wildcard *.S))
@@ -104,10 +114,12 @@ spc700: $(patsubst %.S,%.spc,$(wildcard *.S))
 %.spc: %.obj
 	$(LINKER) -i -S linkfile_spc $@
 
+# ------------------
+
 .PHONY: encodings
 encodings: 
 
-
+# ------------------
 
 $(SRC)/main.s: $(wildcard $(SRC)/*.asm)
 	touch $(SRC)/main.s
@@ -118,6 +130,8 @@ $(COBJ): $(wildcard $(SRC)/*.s)
 $(BUILD_DIR)/$(ROM): $(COBJ)
 	$(LINKER) -d -v -S linkfile $(BUILD_DIR)/$(ROM)
 	mv $(COBJ) $(BUILD_DIR)
+
+# ------------------
 
 clean:
 	rm -rf $(BUILD_DIR) *.obj *.o *.linkfile
