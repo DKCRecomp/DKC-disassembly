@@ -75,8 +75,8 @@ You can test compilation and reassemble ROM :
 ```bash
 cd DKC-disassembly
 # Edit Makefile PREFIX to point to your wla-dx install path
-make
-# Done! Run the dkc.smc file in your emulator.
+make # Once done, it will create result in a build/ directory. 
+# Run the dkc.smc file in your emulator.
 ```
 
 ## References
